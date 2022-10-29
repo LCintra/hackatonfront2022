@@ -158,8 +158,9 @@ export const DataCostumer = styled.li`
   justify-content: center;
   svg {
     font-size: 24px;
-    color: ${({ theme }) => theme.colors.mainGreen};
-    cursor: pointer;
+    color: ${({ disabled, theme }) =>
+      !disabled ? theme.colors.mainBlue : theme.colors.mainGray};
+    cursor: ${({ disabled }) => (!disabled ? "pointer" : "default")};
   }
 `;
 
@@ -182,8 +183,9 @@ export const ExportCostumer = styled.li`
   justify-content: center;
   svg {
     font-size: 24px;
-    color: ${({ theme }) => theme.colors.mainBlue};
-    cursor: pointer;
+    color: ${({ disabled, theme }) =>
+      !disabled ? theme.colors.mainBlue : theme.colors.mainGray};
+    cursor: ${({ disabled }) => (!disabled ? "pointer" : "default")};
   }
 `;
 
@@ -196,6 +198,14 @@ export const ModalTitle = styled.strong`
   color: #fd620b;
   text-align: center;
   margin-bottom: 40px;
+`;
+
+export const AlertText = styled.span`
+  color: red;
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  margin-top: 10px;
 `;
 
 export const ModalParagraph = styled.p`

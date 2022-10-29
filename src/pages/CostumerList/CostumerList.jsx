@@ -13,6 +13,7 @@ import {
 import Cookies from "universal-cookie";
 import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
+import { ToolTip } from "../../components/ToolTip";
 
 const CostumerList = () => {
   const [showConfirmNotificationModal, setShowConfirmNotificationModal] =
@@ -36,26 +37,31 @@ const CostumerList = () => {
       id: 0,
       razao: "Centro Municipal Universitário de Franca",
       cnpj: "47.987.136/0001-09",
+      alreadyApproved: false,
     },
     {
       id: 1,
       razao: "Centro Municipal Universitário de Franca",
       cnpj: "47.987.136/0001-09",
+      alreadyApproved: true,
     },
     {
       id: 2,
       razao: "Centro Municipal Universitário de Franca",
       cnpj: "47.987.136/0001-09",
+      alreadyApproved: true,
     },
     {
       id: 3,
       razao: "Centro Municipal Universitário de Franca",
       cnpj: "47.987.136/0001-09",
+      alreadyApproved: false,
     },
     {
       id: 4,
       razao: "Centro Municipal Universitário de Franca",
       cnpj: "47.987.136/0001-09",
+      alreadyApproved: false,
     },
   ];
 
@@ -109,7 +115,7 @@ const CostumerList = () => {
                 <Styles.Razao>Razão Social</Styles.Razao>
                 <Styles.CNPJ>CNPJ</Styles.CNPJ>
                 <Styles.Notification>Enviar Notificação?</Styles.Notification>
-                {/* <Styles.Data>Intervalo de Data</Styles.Data> */}
+                <Styles.Data>Intervalo de Data</Styles.Data>
                 <Styles.Export>Exportar Tabela?</Styles.Export>
               </Styles.ListTable>
               {mockedCostumers.map((costumer) => (
@@ -121,11 +127,41 @@ const CostumerList = () => {
                   >
                     <FiBell />
                   </Styles.NotificationCostumer>
-                  {/* <Styles.DataCostumer>
-                    <FiCalendar />
-                  </Styles.DataCostumer> */}
-                  <Styles.ExportCostumer>
-                    <FiDownload />
+                  <Styles.DataCostumer disabled={costumer.alreadyApproved}>
+                    {costumer.alreadyApproved ? (
+                      <ToolTip
+                        text={
+                          <>
+                            Seu cliente não autorizou a consulta de dados.
+                            <Styles.AlertText>
+                              Solicite novamente!
+                            </Styles.AlertText>
+                          </>
+                        }
+                      >
+                        <FiCalendar />
+                      </ToolTip>
+                    ) : (
+                      <FiCalendar />
+                    )}
+                  </Styles.DataCostumer>
+                  <Styles.ExportCostumer disabled={costumer.alreadyApproved}>
+                    {costumer.alreadyApproved ? (
+                      <ToolTip
+                        text={
+                          <>
+                            Seu cliente não autorizou a consulta de dados.
+                            <Styles.AlertText>
+                              Solicite novamente!
+                            </Styles.AlertText>
+                          </>
+                        }
+                      >
+                        <FiDownload />
+                      </ToolTip>
+                    ) : (
+                      <FiDownload />
+                    )}
                   </Styles.ExportCostumer>
                 </Styles.ListCostumer>
               ))}
