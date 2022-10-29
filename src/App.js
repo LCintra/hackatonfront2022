@@ -1,12 +1,12 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { About } from "./pages/About";
-import { Home } from "./pages/Home";
+import { LoginAdm } from "./pages/LoginAdm";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/loginadm" element={<LoginAdm />} />
       <Route path="/about" element={<About />} />
     </Routes>
   );
