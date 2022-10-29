@@ -9,6 +9,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 
+import { Modal } from "../../components/Modal";
+
 const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.colors.mainBackground};
@@ -69,6 +71,23 @@ const LoginAdm = () => {
         </Styles.FormContainer>
       </Styles.Form>
       <Styles.ImageContainer src={imageBackground} />
+
+      <Modal active={false}>
+        <Styles.ModalTitle>Quase lá!</Styles.ModalTitle>
+        <Styles.ModalParagraph>Notamos que esse é seu primeiro login na nossa plataforma.</Styles.ModalParagraph>
+        <Styles.ModalParagraph>Deseja alterar sua senha?</Styles.ModalParagraph>
+        
+        <Styles.ModalButtonsContainer>
+          <Styles.ModalButtonContainer>
+            <Button text={"Não Alterar"} type={"button"} styleType={"primaryInvert"} />
+          </Styles.ModalButtonContainer>
+
+          <Styles.ModalButtonContainer>
+            <Button text={"Alterar"} type={"button"} />
+          </Styles.ModalButtonContainer>
+          
+        </Styles.ModalButtonsContainer>
+      </Modal>
     </Styles.LoginAdmContainer>
   );
 };
