@@ -231,3 +231,18 @@ export const ModalButtonContainer = styled.div`
   width: 100%;
   margin: 0 12px;
 `;
+
+export const DatesInputContainer = styled.div`
+  display: flex;
+  width: 342px;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 72px;
+`;
+
+export const InputContainers = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+`;

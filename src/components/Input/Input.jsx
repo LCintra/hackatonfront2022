@@ -1,4 +1,5 @@
 import * as Styles from "./Input.styles";
+import moment from "moment";
 
 const Input = ({
   icon,
@@ -8,6 +9,7 @@ const Input = ({
   value,
   onChange,
   type = "text",
+  date = false,
 }) => {
   return (
     <Styles.InputContainer>
@@ -19,6 +21,17 @@ const Input = ({
         value={value}
         onChange={onChange}
         type={type}
+        onFocus={(e) => {
+          if (date) {
+            e.target.type = "date";
+          }
+        }}
+        onBlur={(e) => {
+          if (date) {
+            e.target.type = "text";
+            e.target.value = moment(value, "YYYYMMDD").format("DD/MM/YYYY");
+          }
+        }}
       />
     </Styles.InputContainer>
   );

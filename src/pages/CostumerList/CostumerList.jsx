@@ -14,12 +14,18 @@ import Cookies from "universal-cookie";
 import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { ToolTip } from "../../components/ToolTip";
+import { Input } from "../../components/Input";
 
 const CostumerList = () => {
   const [showConfirmNotificationModal, setShowConfirmNotificationModal] =
     useState(false);
 
+  const [showPutDateModal, setShowPutDateModal] = useState(false);
+
   const [selectedId, setSelectedId] = useState(null);
+
+  const [dateInitial, setDateInitial] = useState("");
+  const [dateFinal, setDateFinal] = useState("");
 
   const GlobalStyle = createGlobalStyle`
   body {
@@ -70,9 +76,19 @@ const CostumerList = () => {
     setSelectedId(id);
   };
 
+  const handleClickDateIcon = (id) => {
+    setShowPutDateModal(true);
+    setSelectedId(id);
+  };
+
   const handleSendNotification = () => {
     setShowConfirmNotificationModal(false);
     console.log(selectedId);
+  };
+
+  const handleDateSend = () => {
+    setShowPutDateModal(false);
+    console.log(selectedId, dateInitial, dateFinal);
   };
 
   return (
@@ -127,7 +143,13 @@ const CostumerList = () => {
                   >
                     <FiBell />
                   </Styles.NotificationCostumer>
-                  <Styles.DataCostumer disabled={costumer.alreadyApproved}>
+                  <Styles.DataCostumer
+                    onClick={() =>
+                      !costumer.alreadyApproved &&
+                      handleClickDateIcon(costumer.id)
+                    }
+                    disabled={costumer.alreadyApproved}
+                  >
                     {costumer.alreadyApproved ? (
                       <ToolTip
                         text={
@@ -192,6 +214,54 @@ const CostumerList = () => {
               text={"Enviar"}
               type={"button"}
               onClick={() => handleSendNotification()}
+            />
+          </Styles.ModalButtonContainer>
+        </Styles.ModalButtonsContainer>
+      </Modal>
+
+      <Modal active={showPutDateModal}>
+        <Styles.ModalTitle>Defina o intervalo de data</Styles.ModalTitle>
+        <Styles.ModalParagraph>
+          Deseja solicitar ao cliente uma autorização para consulta dos dados
+          bancários do mesmo?
+        </Styles.ModalParagraph>
+
+        <Styles.InputContainers>
+          <Styles.DatesInputContainer>
+            <Input
+              icon={<FiCalendar />}
+              height="48px"
+              placeholder="Data Inicial"
+              value={dateInitial}
+              onChange={(e) => setDateInitial(e.target.value)}
+              date
+            />
+            <Input
+              icon={<FiCalendar />}
+              height="48px"
+              placeholder="Data Final"
+              value={dateFinal}
+              onChange={(e) => setDateFinal(e.target.value)}
+              date
+            />
+          </Styles.DatesInputContainer>
+        </Styles.InputContainers>
+
+        <Styles.ModalButtonsContainer>
+          <Styles.ModalButtonContainer>
+            <Button
+              text={"Voltar"}
+              type={"button"}
+              styleType={"primaryInvert"}
+              onClick={() => setShowPutDateModal(false)}
+            />
+          </Styles.ModalButtonContainer>
+
+          <Styles.ModalButtonContainer>
+            <Button
+              text={"Enviar"}
+              type={"button"}
+              onClick={() => handleDateSend()}
             />
           </Styles.ModalButtonContainer>
         </Styles.ModalButtonsContainer>
