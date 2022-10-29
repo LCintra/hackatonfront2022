@@ -14,7 +14,9 @@ function App() {
   useEffect(() => {
     const cookie = cookies.get("auth-token");
     if (cookie === undefined) {
-      // navigate("/loginadm");
+      navigate("/loginadm");
+    } else {
+      navigate("/costumer-list");
     }
   }, []);
   return (

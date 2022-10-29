@@ -1,8 +1,19 @@
 import * as Styles from "./Button.styles";
 
-const Button = ({ text, type = "button", onClick = () => null, styleType = 'primary' }) => {
+const Button = ({
+  text,
+  type = "button",
+  onClick = () => null,
+  styleType = "primary",
+  color,
+}) => {
   return (
-    <Styles.Button onClick={() => onClick()} type={type} styleType={styleType}>
+    <Styles.Button
+      color={color}
+      onClick={() => onClick()}
+      type={type}
+      styleType={styleType}
+    >
       {text}
     </Styles.Button>
   );

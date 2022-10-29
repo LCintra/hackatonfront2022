@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-export const Button = styled.button`
+export const IconButton = styled.button`
   text-align: center;
   width: 100%;
   background-color: ${({ color }) => color};
@@ -12,10 +12,10 @@ export const Button = styled.button`
   font-size: 24px;
   padding: 10px 0px;
   cursor: pointer;
-
-  ${props => props.styleType === 'primaryInvert' && css`
-    background: none;
-    border: 2px solid #2F6FED;
-    color: #2F6FED;
-  `}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    margin-right: 8px;
+  }
 `;

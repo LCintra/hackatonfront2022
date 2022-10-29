@@ -66,7 +66,7 @@ const LoginAdm = () => {
             />
           </Styles.InputContainer>
           <Styles.ButtonContainer>
-            <Button text={"Entrar"} type={"submit"} />
+            <Button color={"#2F6FED"} text={"Entrar"} type={"submit"} />
           </Styles.ButtonContainer>
         </Styles.FormContainer>
       </Styles.Form>
