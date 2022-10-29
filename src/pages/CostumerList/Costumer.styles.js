@@ -186,3 +186,38 @@ export const ExportCostumer = styled.li`
     cursor: pointer;
   }
 `;
+
+export const ModalTitle = styled.strong`
+  display: block;
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 39px;
+  color: #fd620b;
+  text-align: center;
+  margin-bottom: 40px;
+`;
+
+export const ModalParagraph = styled.p`
+  display: block;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 34px;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 40px;
+`;
+
+export const ModalButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+export const ModalButtonContainer = styled.div`
+  display: block;
+  max-width: 295px;
+  width: 100%;
+  margin: 0 12px;
+`;

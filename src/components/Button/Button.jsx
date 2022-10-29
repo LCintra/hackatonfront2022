@@ -5,7 +5,7 @@ const Button = ({
   type = "button",
   onClick = () => null,
   styleType = "primary",
-  color,
+  color = "#2F6FED",
 }) => {
   return (
     <Styles.Button
