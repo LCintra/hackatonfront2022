@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import Cookie from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 import { ResetPassword } from "./pages/ResetPassword";
+import { SignupAdm } from "./pages/SignupAdm";
 
 function App() {
   const cookies = new Cookie();
@@ -21,6 +22,7 @@ function App() {
   return (
     <Routes>
       <Route path="/loginadm" element={<LoginAdm />} />
+      <Route path="/signupadm" element={<SignupAdm />} />
       <Route path="/costumer-list" element={<CostumerList />} />
       <Route path="/reset-password" element={<ResetPassword />} />
     </Routes>
