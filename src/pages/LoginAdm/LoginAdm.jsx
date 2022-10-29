@@ -6,6 +6,8 @@ import { createGlobalStyle } from "styled-components";
 import { useState } from "react";
 import imageBackground from "../../assets/login-adm.png";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -17,12 +19,22 @@ const LoginAdm = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+  const cookies = new Cookies();
+
   const handleLogin = (e) => {
     e.preventDefault();
-    axios.put("https://hackatom2022.herokuapp.com/login", {
-      user: user,
-      password: password,
-    });
+    axios
+      .put("https://hackatom2022.herokuapp.com/login", {
+        user: user,
+        password: password,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          cookies.set("auth-token", response.data);
+          navigate("/costumer-list");
+        }
+      });
   };
   return (
     <Styles.LoginAdmContainer>
