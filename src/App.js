@@ -13,6 +13,8 @@ function App() {
     const cookie = cookies.get("auth-token");
     if (cookie === undefined) {
       navigate("/loginadm");
+    } else {
+      navigate("/costumer-list");
     }
   }, []);
   return (
