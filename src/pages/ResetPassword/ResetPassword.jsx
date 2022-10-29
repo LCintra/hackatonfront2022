@@ -4,7 +4,7 @@ import * as Styles from "./ResetPassword.styles";
 import { FiUser, FiLock } from "react-icons/fi";
 import { createGlobalStyle } from "styled-components";
 import { useState } from "react";
-import imageBackground from "../../assets/login-adm.png";
+import imageBackground from "../../assets/reset-password.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";

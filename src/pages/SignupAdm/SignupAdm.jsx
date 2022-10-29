@@ -9,7 +9,7 @@ import {
 } from "react-icons/fi";
 import { createGlobalStyle } from "styled-components";
 import { useState } from "react";
-import imageBackground from "../../assets/login-adm.png";
+import imageBackground from "../../assets/signup-adm.png";
 
 const GlobalStyle = createGlobalStyle`
   body {
