@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { ResetPassword } from "./pages/ResetPassword";
 import { SignupAdm } from "./pages/SignupAdm";
 import { CreateCustomer } from "./pages/CreateCustomer";
+import { OfficeList } from "./pages/OfficeList";
+import { SignupOffice } from "./pages/SignupOffice";
 
 function App() {
   const cookies = new Cookie();
@@ -16,8 +18,6 @@ function App() {
     const cookie = cookies.get("auth-token");
     if (cookie === undefined) {
       navigate("/loginadm");
-    } else {
-      navigate("/costumer-list");
     }
   }, []);
   return (
@@ -27,6 +27,8 @@ function App() {
       <Route path="/costumer-list" element={<CostumerList />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/create-customer" element={<CreateCustomer />} />
+      <Route path="/office-list" element={<OfficeList />} />
+      <Route path="/create-office" element={<SignupOffice />} />
     </Routes>
   );
 }

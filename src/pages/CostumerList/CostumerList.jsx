@@ -15,11 +15,12 @@ import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { ToolTip } from "../../components/ToolTip";
 import { Input } from "../../components/Input";
+import { useNavigate } from "react-router-dom";
 
 const CostumerList = () => {
   const [showConfirmNotificationModal, setShowConfirmNotificationModal] =
     useState(false);
-
+  const navigate = useNavigate();
   const [showPutDateModal, setShowPutDateModal] = useState(false);
 
   const [selectedId, setSelectedId] = useState(null);
@@ -91,6 +92,10 @@ const CostumerList = () => {
     console.log(selectedId, dateInitial, dateFinal);
   };
 
+  const handleAddClient = () => {
+    navigate("/create-customer");
+  };
+
   return (
     <>
       <GlobalStyle />
@@ -122,7 +127,11 @@ const CostumerList = () => {
                 Bem vindo (a), vamos começar
               </Styles.FirstMessage>
               <Styles.ButtonContainer>
-                <IconButton color={"#FD620B"} text={"Adicionar Cliente"} />
+                <IconButton
+                  onClick={() => handleAddClient()}
+                  color={"#FD620B"}
+                  text={"Adicionar Cliente"}
+                />
               </Styles.ButtonContainer>
             </Styles.HeaderContainer>
             <Styles.MainListContainer>

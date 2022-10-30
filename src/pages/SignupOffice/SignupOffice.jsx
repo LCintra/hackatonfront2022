@@ -1,6 +1,6 @@
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
-import * as Styles from "./CreateCustomer.styles";
+import * as Styles from "./SignupOffice.styles";
 import { FiLock, FiAward, FiBriefcase, FiAtSign } from "react-icons/fi";
 import { createGlobalStyle } from "styled-components";
 import { useState } from "react";
@@ -12,25 +12,25 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const CreateCustomer = () => {
+const SignupOffice = () => {
   const [socialReason, setSocialReason] = useState("");
   const [cnpj, setCnpj] = useState("");
 
   return (
-    <Styles.CreateCustomerContainer>
+    <Styles.SignupOfficeContainer>
       <GlobalStyle />
       <Styles.Form onSubmit={(e) => {}}>
-        <Styles.TitleMessage>Cadastre um cliente</Styles.TitleMessage>
+        <Styles.TitleMessage>Cadastre um escritório</Styles.TitleMessage>
 
         <Styles.DescriptionMessage>
-          Precisamos de alguns dados do empresário
+          Precisamos de alguns dados do escritório
         </Styles.DescriptionMessage>
         <Styles.FormContainer>
           <Styles.InputContainer>
             <Input
               width={"320px"}
               height={"48px"}
-              placeholder={"CRC"}
+              placeholder={"Razão Social"}
               icon={<FiAward />}
               value={socialReason}
               onChange={(e) => setSocialReason()}
@@ -38,7 +38,7 @@ const CreateCustomer = () => {
             <Input
               width={"320px"}
               height={"48px"}
-              placeholder={"Nome do contador(a) representante"}
+              placeholder={"CNPJ"}
               icon={<FiBriefcase />}
               value={cnpj}
               onChange={(e) => setCnpj(e.target.value)}
@@ -51,8 +51,8 @@ const CreateCustomer = () => {
         </Styles.FormContainer>
       </Styles.Form>
       <Styles.ImageContainer src={imageBackground} />
-    </Styles.CreateCustomerContainer>
+    </Styles.SignupOfficeContainer>
   );
 };
 
-export default CreateCustomer;
+export default SignupOffice;
