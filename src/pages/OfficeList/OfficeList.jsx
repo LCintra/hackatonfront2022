@@ -4,7 +4,6 @@ import { IconButton } from "../../components/IconButton";
 import { Button } from "../../components/Button";
 import {
   FiBell,
-  FiCalendar,
   FiEdit3,
   FiGrid,
   FiSettings,
@@ -16,6 +15,7 @@ import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.png";
+import axios from "axios";
 
 const OfficeList = () => {
   const [selectedId, setSelectedId] = useState(null);
@@ -33,42 +33,44 @@ const OfficeList = () => {
   };
 
   const handleRemove = () => {
-    console.log(selectedId);
     setShowRemoveModal(false);
+    setMockedCostumers(
+      mockedCostumers.filter((costumer) => costumer.id !== selectedId)
+    );
   };
 
-  const mockedCostumers = [
+  const [mockedCostumers, setMockedCostumers] = useState([
     {
       id: 0,
-      razao: "Centro Municipal Universitário de Franca",
-      cnpj: "47.987.136/0001-09",
+      razao: "Escritório 1",
+      cnpj: "23.427.136/0421-09",
       alreadyApproved: false,
     },
     {
       id: 1,
       razao: "Centro Municipal Universitário de Franca",
-      cnpj: "47.987.136/0001-09",
+      cnpj: "74.325.124/3201-09",
       alreadyApproved: true,
     },
     {
       id: 2,
-      razao: "Centro Municipal Universitário de Franca",
-      cnpj: "47.987.136/0001-09",
+      razao: "Escritório 3",
+      cnpj: "21.246.154/0541-09",
       alreadyApproved: true,
     },
     {
       id: 3,
-      razao: "Centro Municipal Universitário de Franca",
-      cnpj: "47.987.136/0001-09",
+      razao: "Escritório 4",
+      cnpj: "47.927.136/2201-09",
       alreadyApproved: false,
     },
     {
       id: 4,
-      razao: "Centro Municipal Universitário de Franca",
-      cnpj: "47.987.136/0001-09",
+      razao: "Escritório 5",
+      cnpj: "41.987.136/0001-09",
       alreadyApproved: false,
     },
-  ];
+  ]);
 
   const handleClickEditButton = (id) => {
     setSelectedId(id);

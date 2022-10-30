@@ -30,7 +30,7 @@ const CreateCustomer = () => {
             <Input
               width={"320px"}
               height={"48px"}
-              placeholder={"CRC"}
+              placeholder={"Razão Social"}
               icon={<FiAward />}
               value={socialReason}
               onChange={(e) => setSocialReason()}
@@ -38,7 +38,7 @@ const CreateCustomer = () => {
             <Input
               width={"320px"}
               height={"48px"}
-              placeholder={"Nome do contador(a) representante"}
+              placeholder={"CNPJ"}
               icon={<FiBriefcase />}
               value={cnpj}
               onChange={(e) => setCnpj(e.target.value)}

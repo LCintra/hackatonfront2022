@@ -37,7 +37,11 @@ const LoginAdm = () => {
       .then((response) => {
         if (response.status === 200) {
           cookies.set("auth-token", response.data);
-          navigate("/costumer-list");
+          if (response.data === "agency") {
+            navigate("/costumer-list");
+          } else {
+            navigate("/office-list");
+          }
         }
         setLoading(false);
       })

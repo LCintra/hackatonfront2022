@@ -9,7 +9,9 @@ import {
   FiGrid,
   FiSettings,
   FiPower,
+  FiDownloadCloud,
 } from "react-icons/fi";
+import { CSVLink } from "react-csv";
 import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { ToolTip } from "../../components/ToolTip";
@@ -40,6 +42,8 @@ const CostumerList = () => {
 
   const [bankData, setBankData] = useState([]);
 
+  const [downloadReady, setDownloadReady] = useState(false);
+
   const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.colors.mainBackground};
@@ -53,31 +57,31 @@ const CostumerList = () => {
   const mockedCostumers = [
     {
       id: 0,
-      razao: "Centro Municipal Universitário de Franca",
-      cnpj: "47.987.136/0001-09",
+      razao: "Nome Fictício 1",
+      cnpj: "21.245.436/0001-09",
       alreadyApproved: false,
     },
     {
       id: 1,
       razao: "Centro Municipal Universitário de Franca",
-      cnpj: "47.987.136/0001-09",
+      cnpj: "56.987.136/3201-09",
       alreadyApproved: true,
     },
     {
       id: 2,
-      razao: "Centro Municipal Universitário de Franca",
-      cnpj: "47.987.136/0001-09",
+      razao: "Nome Fictício 3",
+      cnpj: "87.987.136/0531-09",
       alreadyApproved: true,
     },
     {
       id: 3,
-      razao: "Centro Municipal Universitário de Franca",
-      cnpj: "47.987.136/0001-09",
+      razao: "Nome Fictício 4",
+      cnpj: "12.987.136/2101-09",
       alreadyApproved: false,
     },
     {
       id: 4,
-      razao: "Centro Municipal Universitário de Franca",
+      razao: "Nome Fictício 5",
       cnpj: "47.987.136/0001-09",
       alreadyApproved: false,
     },
@@ -95,7 +99,6 @@ const CostumerList = () => {
 
   const handleSendNotification = () => {
     setShowConfirmNotificationModal(false);
-    console.log(selectedId);
   };
 
   const handleDateSend = () => {
@@ -120,6 +123,39 @@ const CostumerList = () => {
 
   const handleAddClient = () => {
     navigate("/create-customer");
+  };
+
+  const handleDownload = (id) => {
+    const authToken = cookies.get("auth-token");
+    axios
+      .get(
+        `https://hackatom2022.herokuapp.com/agency/bankreconciliation?Authorization=${authToken}`
+      )
+      .then((response) => {
+        setBankData(response.data);
+        setDownloadReady(true);
+        setSelectedId(id);
+      });
+  };
+
+  const getRightIcon = (id) => {
+    const icon =
+      downloadReady && id === selectedId ? (
+        <CSVLink data={bankData} target="_blank">
+          <FiDownload
+            onClick={() => {
+              handleDownload(id);
+            }}
+          />
+        </CSVLink>
+      ) : (
+        <FiDownloadCloud
+          onClick={() => {
+            handleDownload(id);
+          }}
+        />
+      );
+    return icon;
   };
 
   if (showExtract) {
@@ -228,7 +264,7 @@ const CostumerList = () => {
                           <FiDownload />
                         </ToolTip>
                       ) : (
-                        <FiDownload />
+                        getRightIcon(costumer.id)
                       )}
                     </Styles.ExportCostumer>
                   </Styles.ListCostumer>
