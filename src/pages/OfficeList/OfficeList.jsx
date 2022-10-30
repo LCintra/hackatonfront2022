@@ -123,7 +123,7 @@ const OfficeList = () => {
               </Styles.ButtonContainer>
             </Styles.HeaderContainer>
             <Styles.MainListContainer>
-              <Styles.ListTitle>Listagem</Styles.ListTitle>
+              <Styles.ListTitle>Listagem de Escritórios</Styles.ListTitle>
               <Styles.ListTable>
                 <Styles.Razao>Razão Social</Styles.Razao>
                 <Styles.CNPJ>CNPJ</Styles.CNPJ>

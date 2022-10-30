@@ -12,10 +12,15 @@ export const Button = styled.button`
   font-size: 24px;
   padding: 10px 0px;
   cursor: pointer;
+  :disabled {
+    opacity: 0.5;
+  }
 
-  ${props => props.styleType === 'primaryInvert' && css`
-    background: none;
-    border: 2px solid #2F6FED;
-    color: #2F6FED;
-  `}
+  ${(props) =>
+    props.styleType === "primaryInvert" &&
+    css`
+      background: none;
+      border: 2px solid #2f6fed;
+      color: #2f6fed;
+    `}
 `;

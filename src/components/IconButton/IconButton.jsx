@@ -2,7 +2,7 @@ import * as Styles from "./IconButton.styles";
 import { FiUserPlus } from "react-icons/fi";
 
 const IconButton = ({
-  icon,
+  icon = <FiUserPlus />,
   text,
   type = "button",
   onClick = () => null,
@@ -10,7 +10,7 @@ const IconButton = ({
 }) => {
   return (
     <Styles.IconButton color={color} onClick={() => onClick()} type={type}>
-      <FiUserPlus /> {text}
+      {icon} {text}
     </Styles.IconButton>
   );
 };

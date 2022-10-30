@@ -10,6 +10,7 @@ import { SignupAdm } from "./pages/SignupAdm";
 import { CreateCustomer } from "./pages/CreateCustomer";
 import { OfficeList } from "./pages/OfficeList";
 import { SignupOffice } from "./pages/SignupOffice";
+import { InfoBancaria } from "./pages/InfoBancaria";
 
 function App() {
   const cookies = new Cookie();
