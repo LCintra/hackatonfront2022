@@ -245,3 +245,26 @@ export const InputContainers = styled.div`
   width: 100%;
   justify-content: center;
 `;
+
+export const LoadingImg = styled.img`
+  width: 25px;
+`;
+
+export const Logo = styled.img`
+  width: 50px;
+  margin-left: 18px;
+`;
+
+export const LogoName = styled.h2`
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: ${({ theme }) => theme.font.family};
+`;
+
+export const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  gap: 5px;
+`;

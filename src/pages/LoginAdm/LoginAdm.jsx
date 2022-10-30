@@ -40,6 +40,9 @@ const LoginAdm = () => {
           navigate("/costumer-list");
         }
         setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
       });
   };
   return (

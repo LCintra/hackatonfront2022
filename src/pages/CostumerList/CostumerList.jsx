@@ -10,7 +10,6 @@ import {
   FiSettings,
   FiPower,
 } from "react-icons/fi";
-import Cookies from "universal-cookie";
 import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { ToolTip } from "../../components/ToolTip";
@@ -20,6 +19,8 @@ import axios from "axios";
 import Cookie from "universal-cookie";
 import { InfoBancaria } from "../InfoBancaria";
 import moment from "moment/moment";
+import LoadingIcon from "../../assets/loading-gif.gif";
+import Logo from "../../assets/logo.png";
 
 const CostumerList = () => {
   const cookies = new Cookie();
@@ -29,6 +30,8 @@ const CostumerList = () => {
   const [showPutDateModal, setShowPutDateModal] = useState(false);
 
   const [selectedId, setSelectedId] = useState(null);
+
+  const [loading, setLoading] = useState(false);
 
   const [dateInitial, setDateInitial] = useState("");
   const [dateFinal, setDateFinal] = useState("");
@@ -97,19 +100,21 @@ const CostumerList = () => {
 
   const handleDateSend = () => {
     const authToken = cookies.get("auth-token");
-    setShowPutDateModal(false);
     setDateInitial("");
     setDateFinal("");
+    setLoading(true);
     axios
       .get(
         `https://hackatom2022.herokuapp.com/agency/bankreconciliation?Authorization=${authToken}`
       )
       .then((e) => {
-        setShowExtract(true);
         const filteredBankExtract = e.data.filter((extract) =>
           moment(extract.Date).isBetween(dateInitial, dateFinal)
         );
+        setLoading(false);
+        setShowPutDateModal(false);
         setBankData(filteredBankExtract);
+        setShowExtract(true);
       });
   };
 
@@ -126,6 +131,10 @@ const CostumerList = () => {
         <Styles.MainContainer>
           <Styles.SideMenu>
             <Styles.MenuList>
+              <Styles.LogoContainer>
+                <Styles.Logo src={Logo} />
+                <Styles.LogoName>Earning Data</Styles.LogoName>
+              </Styles.LogoContainer>
               <Styles.MenuItem>
                 <FiGrid />
                 Overview
@@ -296,7 +305,9 @@ const CostumerList = () => {
 
             <Styles.ModalButtonContainer>
               <Button
-                text={"Enviar"}
+                text={
+                  !loading ? "Enviar" : <Styles.LoadingImg src={LoadingIcon} />
+                }
                 type={"button"}
                 onClick={() => handleDateSend()}
                 disabled={dateInitial === "" || dateFinal === ""}

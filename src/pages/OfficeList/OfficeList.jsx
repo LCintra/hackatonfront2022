@@ -14,9 +14,8 @@ import {
 import Cookies from "universal-cookie";
 import { useState } from "react";
 import Modal from "../../components/Modal/Modal";
-import { ToolTip } from "../../components/ToolTip";
-import { Input } from "../../components/Input";
 import { useNavigate } from "react-router-dom";
+import Logo from "../../assets/logo.png";
 
 const OfficeList = () => {
   const [selectedId, setSelectedId] = useState(null);
@@ -90,6 +89,10 @@ const OfficeList = () => {
       <Styles.MainContainer>
         <Styles.SideMenu>
           <Styles.MenuList>
+            <Styles.LogoContainer>
+              <Styles.Logo src={Logo} />
+              <Styles.LogoName>Earning Data</Styles.LogoName>
+            </Styles.LogoContainer>
             <Styles.MenuItem>
               <FiGrid />
               Overview
