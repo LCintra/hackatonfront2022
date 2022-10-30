@@ -29,7 +29,9 @@ const Input = ({
         onBlur={(e) => {
           if (date) {
             e.target.type = "text";
-            e.target.value = moment(value, "YYYYMMDD").format("DD/MM/YYYY");
+            // const formatedDate = moment(value, "YYYYMMDD").format("DD/MM/YYYY");
+            // e.target.value =
+            //   formatedDate !== "Invalid date" ? formatedDate : "";
           }
         }}
       />

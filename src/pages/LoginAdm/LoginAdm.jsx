@@ -8,6 +8,7 @@ import imageBackground from "../../assets/login-adm.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
+import LoadingIcon from "../../assets/loading-gif.gif";
 
 // import { Modal } from "../../components/Modal";
 
@@ -20,11 +21,13 @@ const GlobalStyle = createGlobalStyle`
 const LoginAdm = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const cookies = new Cookies();
 
   const handleLogin = (e) => {
+    setLoading(true);
     e.preventDefault();
     axios
       .put("https://hackatom2022.herokuapp.com/login", {
@@ -36,6 +39,7 @@ const LoginAdm = () => {
           cookies.set("auth-token", response.data);
           navigate("/costumer-list");
         }
+        setLoading(false);
       });
   };
   return (
@@ -66,14 +70,19 @@ const LoginAdm = () => {
             />
           </Styles.InputContainer>
           <Styles.ButtonContainer>
-            <Button color={"#2F6FED"} text={"Entrar"} type={"submit"} />
+            <Button
+              color={"#2F6FED"}
+              text={
+                !loading ? "Entrar" : <Styles.LoadingImg src={LoadingIcon} />
+              }
+              type={"submit"}
+            />
           </Styles.ButtonContainer>
         </Styles.FormContainer>
       </Styles.Form>
       <Styles.ImageContainer src={imageBackground} />
 
-      {
-        /*
+      {/*
         <Modal active={false}>
           <Styles.ModalTitle>Quase lá!</Styles.ModalTitle>
           <Styles.ModalParagraph>Notamos que esse é seu primeiro login na nossa plataforma.</Styles.ModalParagraph>
@@ -90,9 +99,7 @@ const LoginAdm = () => {
             
           </Styles.ModalButtonsContainer>
         </Modal>
-        */
-      }
-      
+        */}
     </Styles.LoginAdmContainer>
   );
 };

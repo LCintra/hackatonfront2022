@@ -46,18 +46,18 @@ export const ButtonContainer = styled.div`
 
 export const ModalTitle = styled.strong`
   display: block;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-weight: 700;
   font-size: 32px;
   line-height: 39px;
-  color: #FD620B;
+  color: #fd620b;
   text-align: center;
   margin-bottom: 40px;
 `;
 
 export const ModalParagraph = styled.p`
   display: block;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-weight: 400;
   font-size: 24px;
   line-height: 34px;
@@ -77,4 +77,8 @@ export const ModalButtonContainer = styled.div`
   max-width: 295px;
   width: 100%;
   margin: 0 12px;
+`;
+
+export const LoadingImg = styled.img`
+  width: 25px;
 `;

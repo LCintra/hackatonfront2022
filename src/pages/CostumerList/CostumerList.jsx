@@ -16,8 +16,11 @@ import Modal from "../../components/Modal/Modal";
 import { ToolTip } from "../../components/ToolTip";
 import { Input } from "../../components/Input";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Cookie from "universal-cookie";
 
 const CostumerList = () => {
+  const cookies = new Cookie();
   const [showConfirmNotificationModal, setShowConfirmNotificationModal] =
     useState(false);
   const navigate = useNavigate();
@@ -33,11 +36,13 @@ const CostumerList = () => {
     background-color: ${({ theme }) => theme.colors.mainBackground};
   }
 `;
-  const cookies = new Cookies();
   const logoutUser = () => {
     cookies.remove("auth-token");
     window.location.reload();
   };
+
+  var pdf = require("pdf-creator-node");
+  var fs = require("fs");
 
   const mockedCostumers = [
     {
@@ -88,7 +93,13 @@ const CostumerList = () => {
   };
 
   const handleDateSend = () => {
+    const authToken = cookies.get("auth-token");
     setShowPutDateModal(false);
+    setDateInitial("");
+    setDateFinal("");
+    axios.get(
+      `https://hackatom2022.herokuapp.com/agency/bankreconciliation?Authorization=${authToken}`
+    );
     console.log(selectedId, dateInitial, dateFinal);
   };
 

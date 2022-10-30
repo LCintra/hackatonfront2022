@@ -17,12 +17,12 @@ function App() {
   useEffect(() => {
     const cookie = cookies.get("auth-token");
     if (cookie === undefined) {
-      navigate("/loginadm");
+      navigate("/");
     }
   }, []);
   return (
     <Routes>
-      <Route path="/loginadm" element={<LoginAdm />} />
+      <Route path="/" element={<LoginAdm />} />
       <Route path="/signupadm" element={<SignupAdm />} />
       <Route path="/costumer-list" element={<CostumerList />} />
       <Route path="/reset-password" element={<ResetPassword />} />
