@@ -26,7 +26,7 @@ const ResetPassword = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     /* axios
-      .put("https://hackatom2022.herokuapp.com/login", {
+      .put("https://hackatonfacef2022.herokuapp.com/login", {
         user: user,
         password: password,
       })
@@ -41,12 +41,10 @@ const ResetPassword = () => {
     <Styles.ResetPasswordContainer>
       <GlobalStyle />
       <Styles.Form onSubmit={(e) => handleLogin(e)}>
-        <Styles.TitleMessage>
-          Redefinição de senha
-        </Styles.TitleMessage>
+        <Styles.TitleMessage>Redefinição de senha</Styles.TitleMessage>
 
         <Styles.DescriptionMessage>
-          Escolha sua nova senha de acesso. 
+          Escolha sua nova senha de acesso.
         </Styles.DescriptionMessage>
         <Styles.FormContainer>
           <Styles.InputContainer>

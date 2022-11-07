@@ -30,7 +30,7 @@ const LoginAdm = () => {
     setLoading(true);
     e.preventDefault();
     axios
-      .put("https://hackatom2022.herokuapp.com/login", {
+      .put("https://hackatonfacef2022.herokuapp.com/login", {
         user: user,
         password: password,
       })

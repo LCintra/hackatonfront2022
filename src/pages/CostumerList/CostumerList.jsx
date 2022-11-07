@@ -108,7 +108,7 @@ const CostumerList = () => {
     setLoading(true);
     axios
       .get(
-        `https://hackatom2022.herokuapp.com/agency/bankreconciliation?Authorization=${authToken}`
+        `https://hackatonfacef2022.herokuapp.com/agency/bankreconciliation?Authorization=${authToken}`
       )
       .then((e) => {
         const filteredBankExtract = e.data.filter((extract) =>
@@ -129,7 +129,7 @@ const CostumerList = () => {
     const authToken = cookies.get("auth-token");
     axios
       .get(
-        `https://hackatom2022.herokuapp.com/agency/bankreconciliation?Authorization=${authToken}`
+        `https://hackatonfacef2022.herokuapp.com/agency/bankreconciliation?Authorization=${authToken}`
       )
       .then((response) => {
         setBankData(response.data);
